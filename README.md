@@ -52,8 +52,7 @@ O projeto ainda está em construção e vem sendo desenvolvido por fatias.
 No momento:
 
 - a estrutura inicial do backend foi criada
-- os domínios `patient`, `medication` e `prescription` já possuem base funcional no backend
-- o domínio `intake` ainda está apenas como esqueleto inicial
+- os domínios `patient`, `medication`, `prescription` e `intake` já possuem base funcional no backend
 - o frontend Angular/PWA ainda será iniciado
 
 ## Como executar
@@ -77,7 +76,6 @@ No momento:
 
 ## Próximos passos
 
-- criar registro de tomadas em `intake`
 - evoluir enums e contratos da API conforme o front Angular
 - preparar a API para consumo pelo Angular
 - iniciar o frontend com foco em mobile-first e suporte PWA

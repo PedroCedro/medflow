@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.1] - 2026-04-29
+
+### Adicionado
+
+- domínio `intake` com entidade, enum de status, DTOs, repository, service, controller e migration
+- endpoints REST para criação, listagem, busca, atualização e inativação de tomadas
+
+### Observações
+
+- build validado com `.\mvnw.cmd test`
+
 ## [0.1.0] - 2026-04-29
 
 ### Adicionado
