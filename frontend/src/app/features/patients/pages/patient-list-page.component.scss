@@ -40,7 +40,50 @@
   background: #fffdf8;
 }
 
-.card p {
+.card--error {
+  border-color: #c87f74;
+  background: #fff4f2;
+}
+
+.list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card__row {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.card__row h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+.card__row p {
   margin: 0;
+}
+
+.card__link {
+  color: #1f6f5f;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.card__button {
+  margin-top: 0.75rem;
+  padding: 0.7rem 0.95rem;
+  border: 0;
+  border-radius: 999px;
+  background: #1f6f5f;
+  color: #f8f4eb;
+  font-weight: 700;
+}
+
+.card p {
+  margin: 0.35rem 0 0;
   line-height: 1.5;
 }

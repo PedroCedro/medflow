@@ -8,7 +8,41 @@
     <a class="page__action" routerLink="/patients/new">Novo</a>
   </div>
 
-  <div class="card">
-    <p>Estrutura inicial pronta. A listagem real entra na próxima etapa.</p>
-  </div>
+  @if (loading()) {
+    <div class="card">
+      <p>Carregando pacientes...</p>
+    </div>
+  } @else if (errorMessage()) {
+    <div class="card card--error">
+      <p>{{ errorMessage() }}</p>
+      <button class="card__button" type="button" (click)="loadPatients()">Tentar novamente</button>
+    </div>
+  } @else if (patients().length === 0) {
+    <div class="card">
+      <p>Nenhum paciente cadastrado ainda.</p>
+    </div>
+  } @else {
+    <div class="list">
+      @for (patient of patients(); track patient.id) {
+        <article class="card">
+          <div class="card__row">
+            <div>
+              <h3>{{ patient.name }}</h3>
+              <p>{{ patient.relationshipDisplayName || 'Sem parentesco definido' }}</p>
+            </div>
+
+            <a class="card__link" [routerLink]="['/patients', patient.id, 'edit']">Editar</a>
+          </div>
+
+          @if (patient.birthDate) {
+            <p><strong>Nascimento:</strong> {{ patient.birthDate }}</p>
+          }
+
+          @if (patient.notes) {
+            <p><strong>Observações:</strong> {{ patient.notes }}</p>
+          }
+        </article>
+      }
+    </div>
+  }
 </section>

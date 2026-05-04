@@ -6,7 +6,52 @@
     <h2>{{ isEditMode() ? 'Editar paciente' : 'Novo paciente' }}</h2>
   </div>
 
-  <div class="card">
-    <p>Estrutura do formulário pronta. O formulário real entra na próxima etapa.</p>
-  </div>
+  @if (loading()) {
+    <div class="card">
+      <p>Carregando paciente...</p>
+    </div>
+  } @else {
+    <form class="card form" [formGroup]="form" (ngSubmit)="submit()">
+      @if (errorMessage()) {
+        <div class="form__error">
+          {{ errorMessage() }}
+        </div>
+      }
+
+      <label class="field">
+        <span>Nome</span>
+        <input type="text" formControlName="name" placeholder="Ex.: Maria Silva" />
+        @if (form.controls.name.touched && form.controls.name.invalid) {
+          <small>Informe um nome válido.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span>Data de nascimento</span>
+        <input type="date" formControlName="birthDate" />
+      </label>
+
+      <label class="field">
+        <span>Parentesco</span>
+        <select formControlName="relationship">
+          <option value="">Selecione</option>
+          @for (option of relationshipOptions; track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Observações</span>
+        <textarea rows="4" formControlName="notes" placeholder="Detalhes importantes"></textarea>
+        @if (form.controls.notes.touched && form.controls.notes.invalid) {
+          <small>As observações devem ter no máximo 500 caracteres.</small>
+        }
+      </label>
+
+      <button class="form__submit" type="submit" [disabled]="saving()">
+        {{ saving() ? 'Salvando...' : (isEditMode() ? 'Salvar alterações' : 'Cadastrar paciente') }}
+      </button>
+    </form>
+  }
 </section>
