@@ -53,6 +53,7 @@ No momento:
 
 - a estrutura inicial do backend foi criada
 - os domínios `patient`, `medication`, `prescription` e `intake` já possuem base funcional no backend
+- a API conta com testes de integração cobrindo o fluxo principal do MVP, validações básicas e cenários de `404`
 - o frontend Angular/PWA ainda será iniciado
 
 ## Como executar
@@ -79,6 +80,12 @@ No momento:
 - evoluir enums e contratos da API conforme o front Angular
 - preparar a API para consumo pelo Angular
 - iniciar o frontend com foco em mobile-first e suporte PWA
+
+## Qualidade atual
+
+- testes de integração do fluxo principal de `patient`, `medication`, `prescription` e `intake`
+- resposta de erro padronizada para validação e recursos não encontrados
+- build validado com `.\mvnw.cmd test`
 
 ## Observações
 

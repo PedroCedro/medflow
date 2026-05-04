@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.2] - 2026-05-04
+
+### Adicionado
+
+- suíte de testes de integração cobrindo o fluxo principal do MVP da API
+- cenários automatizados para validação de payload e resposta `404`
+- handler global simples para padronizar erros de validação e recursos não encontrados
+
+### Observações
+
+- build validado com `.\mvnw.cmd test`
+
 ## [0.1.1] - 2026-04-29
 
 ### Adicionado
