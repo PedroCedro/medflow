@@ -1,0 +1,60 @@
+.shell {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.shell__header {
+  padding: 1.25rem 1rem 0.75rem;
+  background: linear-gradient(180deg, #f8f4eb 0%, #f4f1ea 100%);
+  border-bottom: 1px solid #ddd4c5;
+}
+
+.shell__eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5f6f61;
+}
+
+.shell__header h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.15;
+}
+
+.shell__content {
+  padding: 1rem;
+}
+
+.shell__nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem calc(0.9rem + env(safe-area-inset-bottom));
+  border-top: 1px solid #ddd4c5;
+  background: rgba(248, 244, 235, 0.98);
+  position: sticky;
+  bottom: 0;
+}
+
+.shell__nav a {
+  color: #5f6f61;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.shell__nav a.is-active {
+  color: #1f2a24;
+}
+
+@media (min-width: 768px) {
+  .shell__header,
+  .shell__content,
+  .shell__nav {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}

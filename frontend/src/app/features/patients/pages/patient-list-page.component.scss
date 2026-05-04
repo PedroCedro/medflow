@@ -1,0 +1,46 @@
+.page {
+  display: grid;
+  gap: 1rem;
+}
+
+.page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.page__eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5f6f61;
+}
+
+.page__header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.page__action {
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  background: #1f6f5f;
+  color: #f8f4eb;
+  font-weight: 700;
+}
+
+.card {
+  padding: 1rem;
+  border: 1px solid #ddd4c5;
+  border-radius: 1rem;
+  background: #fffdf8;
+}
+
+.card p {
+  margin: 0;
+  line-height: 1.5;
+}

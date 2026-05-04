@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: "Segoe UI", sans-serif;
+  background: #f4f1ea;
+  color: #1f2a24;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
