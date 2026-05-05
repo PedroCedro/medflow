@@ -1,0 +1,58 @@
+<section class="page">
+  <a class="page__back" routerLink="/medications">Voltar</a>
+
+  <div class="page__header">
+    <p class="page__eyebrow">Medications</p>
+    <h2>{{ isEditMode() ? 'Editar medicamento' : 'Novo medicamento' }}</h2>
+  </div>
+
+  @if (loading()) {
+    <div class="card">
+      <p>Carregando medicamento...</p>
+    </div>
+  } @else {
+    <form class="card form" [formGroup]="form" (ngSubmit)="submit()">
+      @if (errorMessage()) {
+        <div class="form__error">
+          {{ errorMessage() }}
+        </div>
+      }
+
+      <label class="field">
+        <span>Nome</span>
+        <input type="text" formControlName="name" placeholder="Ex.: Losartana" />
+        @if (form.controls.name.touched && form.controls.name.invalid) {
+          <small>Informe um nome válido.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span>Princípio ativo</span>
+        <input type="text" formControlName="activeIngredient" placeholder="Ex.: Losartana Potássica" />
+        @if (form.controls.activeIngredient.touched && form.controls.activeIngredient.invalid) {
+          <small>O princípio ativo deve ter no máximo 120 caracteres.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span>Apresentação</span>
+        <input type="text" formControlName="presentation" placeholder="Ex.: 50 mg comprimido" />
+        @if (form.controls.presentation.touched && form.controls.presentation.invalid) {
+          <small>A apresentação deve ter no máximo 80 caracteres.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span>Observações</span>
+        <textarea rows="4" formControlName="notes" placeholder="Detalhes importantes"></textarea>
+        @if (form.controls.notes.touched && form.controls.notes.invalid) {
+          <small>As observações devem ter no máximo 500 caracteres.</small>
+        }
+      </label>
+
+      <button class="form__submit" type="submit" [disabled]="saving()">
+        {{ saving() ? 'Salvando...' : (isEditMode() ? 'Salvar alterações' : 'Cadastrar medicamento') }}
+      </button>
+    </form>
+  }
+</section>

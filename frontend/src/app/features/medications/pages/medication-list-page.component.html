@@ -1,0 +1,48 @@
+<section class="page">
+  <div class="page__header">
+    <div>
+      <p class="page__eyebrow">Medications</p>
+      <h2>Medicamentos</h2>
+    </div>
+
+    <a class="page__action" routerLink="/medications/new">Novo</a>
+  </div>
+
+  @if (loading()) {
+    <div class="card">
+      <p>Carregando medicamentos...</p>
+    </div>
+  } @else if (errorMessage()) {
+    <div class="card card--error">
+      <p>{{ errorMessage() }}</p>
+      <button class="card__button" type="button" (click)="loadMedications()">Tentar novamente</button>
+    </div>
+  } @else if (medications().length === 0) {
+    <div class="card">
+      <p>Nenhum medicamento cadastrado ainda.</p>
+    </div>
+  } @else {
+    <div class="list">
+      @for (medication of medications(); track medication.id) {
+        <article class="card">
+          <div class="card__row">
+            <div>
+              <h3>{{ medication.name }}</h3>
+              <p>{{ medication.presentation || 'Sem apresentação definida' }}</p>
+            </div>
+
+            <a class="card__link" [routerLink]="['/medications', medication.id, 'edit']">Editar</a>
+          </div>
+
+          @if (medication.activeIngredient) {
+            <p><strong>Princípio ativo:</strong> {{ medication.activeIngredient }}</p>
+          }
+
+          @if (medication.notes) {
+            <p><strong>Observações:</strong> {{ medication.notes }}</p>
+          }
+        </article>
+      }
+    </div>
+  }
+</section>
