@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.3] - 2026-05-04
+
+### Ajustado
+
+- configuração de ambiente do frontend para usar `/api` em desenvolvimento
+- proxy local do Angular para integração com o backend sem erro de CORS no navegador
+
+### Observações
+
+- frontend validado localmente com `npm start -- --proxy-config proxy.conf.json`
+
 ## [0.1.2] - 2026-05-04
 
 ### Adicionado

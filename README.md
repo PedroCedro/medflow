@@ -75,6 +75,14 @@ No momento:
 .\mvnw.cmd test
 ```
 
+### Rodando o frontend Angular em desenvolvimento
+
+Dentro da pasta `frontend`, para evitar erro de CORS no navegador durante o desenvolvimento local, suba o frontend com proxy apontando para o backend Spring:
+
+```powershell
+npm start -- --proxy-config proxy.conf.json
+```
+
 ## Próximos passos
 
 - evoluir enums e contratos da API conforme o front Angular
