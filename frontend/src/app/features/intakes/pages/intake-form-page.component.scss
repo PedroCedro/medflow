@@ -1,0 +1,90 @@
+.page {
+  display: grid;
+  gap: 1rem;
+}
+
+.page__back {
+  color: #1f6f5f;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.page__eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5f6f61;
+}
+
+.page__header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form__error {
+  padding: 0.9rem 1rem;
+  border: 1px solid #c87f74;
+  border-radius: 0.9rem;
+  background: #fff4f2;
+  color: #7f3028;
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.field span {
+  font-weight: 700;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid #cfc5b5;
+  border-radius: 0.9rem;
+  background: #ffffff;
+  color: #1f2a24;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field small {
+  color: #7f3028;
+}
+
+.form__submit {
+  padding: 0.9rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: #1f6f5f;
+  color: #f8f4eb;
+  font-weight: 700;
+}
+
+.form__submit:disabled {
+  opacity: 0.7;
+}
+
+.card {
+  padding: 1rem;
+  border: 1px solid #ddd4c5;
+  border-radius: 1rem;
+  background: #fffdf8;
+}
+
+.card p {
+  margin: 0;
+  line-height: 1.5;
+}

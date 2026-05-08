@@ -54,7 +54,8 @@ No momento:
 - a estrutura inicial do backend foi criada
 - os domínios `patient`, `medication`, `prescription` e `intake` já possuem base funcional no backend
 - a API conta com testes de integração cobrindo o fluxo principal do MVP, validações básicas e cenários de `404`
-- o frontend Angular/PWA ainda será iniciado
+- o frontend Angular já possui fluxo inicial para pacientes, medicamentos, prescrições, tomadas e dashboard
+- o frontend consome a API Spring via proxy local em desenvolvimento
 
 ## Como executar
 
@@ -80,20 +81,23 @@ No momento:
 Dentro da pasta `frontend`, para evitar erro de CORS no navegador durante o desenvolvimento local, suba o frontend com proxy apontando para o backend Spring:
 
 ```powershell
+cd frontend
 npm start -- --proxy-config proxy.conf.json
 ```
 
 ## Próximos passos
 
-- evoluir enums e contratos da API conforme o front Angular
-- preparar a API para consumo pelo Angular
-- iniciar o frontend com foco em mobile-first e suporte PWA
+- refinar a experiência mobile-first do frontend
+- adicionar ações rápidas para registrar tomadas
+- evoluir filtros de prescrições e tomadas
+- preparar suporte PWA além da base Angular
 
 ## Qualidade atual
 
 - testes de integração do fluxo principal de `patient`, `medication`, `prescription` e `intake`
 - resposta de erro padronizada para validação e recursos não encontrados
 - build validado com `.\mvnw.cmd test`
+- build do frontend validado com `npm run build`
 
 ## Observações
 

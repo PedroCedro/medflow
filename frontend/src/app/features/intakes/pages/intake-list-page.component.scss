@@ -1,0 +1,113 @@
+.page {
+  display: grid;
+  gap: 1rem;
+}
+
+.page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.page__eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5f6f61;
+}
+
+.page__header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.page__action {
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  background: #1f6f5f;
+  color: #f8f4eb;
+  font-weight: 700;
+}
+
+.card {
+  padding: 1rem;
+  border: 1px solid #ddd4c5;
+  border-radius: 1rem;
+  background: #fffdf8;
+}
+
+.card--error {
+  border-color: #c87f74;
+  background: #fff4f2;
+}
+
+.list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card__row {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.card__row h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+.card__row p {
+  margin: 0;
+}
+
+.card__link {
+  color: #1f6f5f;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.card__button {
+  margin-top: 0.75rem;
+  padding: 0.7rem 0.95rem;
+  border: 0;
+  border-radius: 999px;
+  background: #1f6f5f;
+  color: #f8f4eb;
+  font-weight: 700;
+}
+
+.card p {
+  margin: 0.35rem 0 0;
+  line-height: 1.5;
+}
+
+.status {
+  display: inline-flex;
+  margin-top: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.status--pending {
+  background: #fff4d6;
+  color: #7a5600;
+}
+
+.status--taken {
+  background: #e5f4ed;
+  color: #1f6f5f;
+}
+
+.status--skipped {
+  background: #fff4f2;
+  color: #7f3028;
+}

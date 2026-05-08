@@ -1,0 +1,54 @@
+<section class="page">
+  <div class="page__header">
+    <div>
+      <p class="page__eyebrow">Intakes</p>
+      <h2>Tomadas</h2>
+    </div>
+
+    <a class="page__action" routerLink="/intakes/new">Nova</a>
+  </div>
+
+  @if (loading()) {
+    <div class="card">
+      <p>Carregando tomadas...</p>
+    </div>
+  } @else if (errorMessage()) {
+    <div class="card card--error">
+      <p>{{ errorMessage() }}</p>
+      <button class="card__button" type="button" (click)="loadIntakes()">Tentar novamente</button>
+    </div>
+  } @else if (intakes().length === 0) {
+    <div class="card">
+      <p>Nenhuma tomada cadastrada ainda.</p>
+    </div>
+  } @else {
+    <div class="list">
+      @for (intake of intakes(); track intake.id) {
+        <article class="card">
+          <div class="card__row">
+            <div>
+              <h3>{{ intake.medicationName }}</h3>
+              <p>{{ intake.patientName }}</p>
+            </div>
+
+            <a class="card__link" [routerLink]="['/intakes', intake.id, 'edit']">Editar</a>
+          </div>
+
+          <p><strong>Agendada:</strong> {{ intake.scheduledAt | date: 'dd/MM/yyyy HH:mm' }}</p>
+
+          @if (intake.takenAt) {
+            <p><strong>Realizada:</strong> {{ intake.takenAt | date: 'dd/MM/yyyy HH:mm' }}</p>
+          }
+
+          <span class="status" [class]="'status status--' + intake.status.toLowerCase()">
+            {{ statusLabels[intake.status] }}
+          </span>
+
+          @if (intake.notes) {
+            <p><strong>Observações:</strong> {{ intake.notes }}</p>
+          }
+        </article>
+      }
+    </div>
+  }
+</section>

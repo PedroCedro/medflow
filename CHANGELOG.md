@@ -1,5 +1,26 @@
 # Changelog
 
+## Não versionado - 2026-05-08
+
+### Adicionado
+
+- fluxo inicial do frontend Angular para prescrições
+- fluxo inicial do frontend Angular para tomadas
+- dashboard inicial com resumo do MVP e próximas tomadas
+- navegação mobile-first com acesso a pacientes, medicamentos, prescrições, tomadas e dashboard
+
+### Ajustado
+
+- página inicial do frontend redirecionando para o dashboard
+- metadados básicos do `index.html` em PT-BR
+- formatação inicial de datas e horários nas listas
+- configuração do `tsconfig.app.json` com `rootDir` explícito
+
+### Observações
+
+- sem alteração de versão semver nesta etapa
+- build do frontend validado com `npm run build`
+
 ## [0.1.3] - 2026-05-04
 
 ### Ajustado

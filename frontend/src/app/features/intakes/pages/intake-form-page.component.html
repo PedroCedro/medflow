@@ -1,0 +1,69 @@
+<section class="page">
+  <a class="page__back" routerLink="/intakes">Voltar</a>
+
+  <div class="page__header">
+    <p class="page__eyebrow">Intakes</p>
+    <h2>{{ isEditMode() ? 'Editar tomada' : 'Nova tomada' }}</h2>
+  </div>
+
+  @if (loading()) {
+    <div class="card">
+      <p>Carregando dados...</p>
+    </div>
+  } @else {
+    <form class="card form" [formGroup]="form" (ngSubmit)="submit()">
+      @if (errorMessage()) {
+        <div class="form__error">
+          {{ errorMessage() }}
+        </div>
+      }
+
+      <label class="field">
+        <span>Prescrição</span>
+        <select formControlName="prescriptionId">
+          <option value="">Selecione</option>
+          @for (prescription of prescriptions(); track prescription.id) {
+            <option [value]="prescription.id">{{ prescriptionLabel(prescription) }}</option>
+          }
+        </select>
+        @if (form.controls.prescriptionId.touched && form.controls.prescriptionId.invalid) {
+          <small>Selecione uma prescrição.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span>Horário agendado</span>
+        <input type="datetime-local" formControlName="scheduledAt" />
+        @if (form.controls.scheduledAt.touched && form.controls.scheduledAt.invalid) {
+          <small>Informe o horário agendado.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span>Horário realizado</span>
+        <input type="datetime-local" formControlName="takenAt" />
+      </label>
+
+      <label class="field">
+        <span>Status</span>
+        <select formControlName="status">
+          @for (option of statusOptions; track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Observações</span>
+        <textarea rows="4" formControlName="notes" placeholder="Detalhes sobre a tomada"></textarea>
+        @if (form.controls.notes.touched && form.controls.notes.invalid) {
+          <small>As observações devem ter no máximo 500 caracteres.</small>
+        }
+      </label>
+
+      <button class="form__submit" type="submit" [disabled]="saving()">
+        {{ saving() ? 'Salvando...' : (isEditMode() ? 'Salvar alterações' : 'Cadastrar tomada') }}
+      </button>
+    </form>
+  }
+</section>

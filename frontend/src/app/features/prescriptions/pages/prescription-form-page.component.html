@@ -1,0 +1,123 @@
+<section class="page">
+  <a class="page__back" routerLink="/prescriptions">Voltar</a>
+
+  <div class="page__header">
+    <p class="page__eyebrow">Prescriptions</p>
+    <h2>{{ isEditMode() ? 'Editar prescrição' : 'Nova prescrição' }}</h2>
+  </div>
+
+  @if (loading()) {
+    <div class="card">
+      <p>Carregando dados...</p>
+    </div>
+  } @else {
+    <form class="card form" [formGroup]="form" (ngSubmit)="submit()">
+      @if (errorMessage()) {
+        <div class="form__error">
+          {{ errorMessage() }}
+        </div>
+      }
+
+      <label class="field">
+        <span>Paciente</span>
+        <select formControlName="patientId">
+          <option value="">Selecione</option>
+          @for (patient of patients(); track patient.id) {
+            <option [value]="patient.id">{{ patient.name }}</option>
+          }
+        </select>
+        @if (form.controls.patientId.touched && form.controls.patientId.invalid) {
+          <small>Selecione um paciente.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span>Medicamento</span>
+        <select formControlName="medicationId">
+          <option value="">Selecione</option>
+          @for (medication of medications(); track medication.id) {
+            <option [value]="medication.id">{{ medication.name }}</option>
+          }
+        </select>
+        @if (form.controls.medicationId.touched && form.controls.medicationId.invalid) {
+          <small>Selecione um medicamento.</small>
+        }
+      </label>
+
+      <div class="form__grid">
+        <label class="field">
+          <span>Dose</span>
+          <input type="number" min="0.01" step="0.01" formControlName="dosageAmount" placeholder="Ex.: 1" />
+          @if (form.controls.dosageAmount.touched && form.controls.dosageAmount.invalid) {
+            <small>Informe uma dose válida.</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Unidade</span>
+          <select formControlName="dosageUnit">
+            <option value="">Selecione</option>
+            @for (option of dosageUnitOptions; track option.value) {
+              <option [value]="option.value">{{ option.label }}</option>
+            }
+          </select>
+          @if (form.controls.dosageUnit.touched && form.controls.dosageUnit.invalid) {
+            <small>Selecione uma unidade.</small>
+          }
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Frequência</span>
+        <input type="text" formControlName="frequency" placeholder="Ex.: 1 vez ao dia" />
+        @if (form.controls.frequency.touched && form.controls.frequency.invalid) {
+          <small>Informe uma frequência válida.</small>
+        }
+      </label>
+
+      <div class="form__grid">
+        <label class="field">
+          <span>Horário</span>
+          <input type="time" formControlName="scheduledTime" />
+        </label>
+
+        <label class="field">
+          <span>Início</span>
+          <input type="date" formControlName="startDate" />
+          @if (form.controls.startDate.touched && form.controls.startDate.invalid) {
+            <small>Informe a data inicial.</small>
+          }
+        </label>
+      </div>
+
+      <label class="check-field">
+        <input type="checkbox" formControlName="continuousUse" />
+        <span>Uso contínuo</span>
+      </label>
+
+      <div class="form__grid">
+        <label class="field">
+          <span>Estoque atual</span>
+          <input type="number" min="0" step="0.01" formControlName="stockQuantity" placeholder="Ex.: 30" />
+        </label>
+
+        <label class="field">
+          <span>Alerta mínimo</span>
+          <input type="number" min="0" step="0.01" formControlName="minimumStockAlert" placeholder="Ex.: 5" />
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Instruções</span>
+        <textarea rows="4" formControlName="instructions" placeholder="Ex.: tomar após o café"></textarea>
+        @if (form.controls.instructions.touched && form.controls.instructions.invalid) {
+          <small>As instruções devem ter no máximo 500 caracteres.</small>
+        }
+      </label>
+
+      <button class="form__submit" type="submit" [disabled]="saving()">
+        {{ saving() ? 'Salvando...' : (isEditMode() ? 'Salvar alterações' : 'Cadastrar prescrição') }}
+      </button>
+    </form>
+  }
+</section>
