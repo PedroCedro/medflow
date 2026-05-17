@@ -32,6 +32,9 @@ build/
 ### VS Code ###
 .vscode/
 
+### BANCO DE DADOS LOCAL ###
+data/
+
 ### ARQUIVOS LOCAIS ###
 .claude/
 *.log

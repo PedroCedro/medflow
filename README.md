@@ -49,7 +49,7 @@ Domínios previstos no projeto:
 
 O projeto ainda está em construção e vem sendo desenvolvido por fatias.
 
-No momento (v0.2.0):
+No momento (v0.2.1):
 
 - a estrutura inicial do backend foi criada
 - os domínios `patient`, `medication`, `prescription` e `intake` já possuem base funcional no backend

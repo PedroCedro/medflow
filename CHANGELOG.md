@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.1] - 2026-05-17
+
+### Ajustado
+
+- banco de dados H2 migrado de memória para arquivo (`./data/medflow.mv.db`) para persistir dados entre reinicializações
+- pasta `data/` adicionada ao `.gitignore`
+
+### Observações
+
+- `patch`: ajuste de configuração sem quebra de compatibilidade
+- build validado com `.\mvnw.cmd spring-boot:run`
+
 ## [0.2.0] - 2026-05-17
 
 ### Adicionado
