@@ -49,12 +49,13 @@ Domínios previstos no projeto:
 
 O projeto ainda está em construção e vem sendo desenvolvido por fatias.
 
-No momento:
+No momento (v0.2.0):
 
 - a estrutura inicial do backend foi criada
 - os domínios `patient`, `medication`, `prescription` e `intake` já possuem base funcional no backend
-- a API conta com testes de integração cobrindo o fluxo principal do MVP, validações básicas e cenários de `404`
-- o frontend Angular já possui fluxo inicial para pacientes, medicamentos, prescrições, tomadas e dashboard
+- a API conta com testes de integração cobrindo o fluxo principal do MVP, validações básicas, cenários de `404` e registro em lote de tomadas
+- o frontend Angular já possui fluxo para pacientes, medicamentos, prescrições, tomadas e dashboard
+- o dashboard permite selecionar paciente, marcar medicamentos pendentes com checkbox e confirmar a tomada em lote via modal
 - o frontend consome a API Spring via proxy local em desenvolvimento
 
 ## Como executar
@@ -87,10 +88,9 @@ npm start -- --proxy-config proxy.conf.json
 
 ## Próximos passos
 
-- refinar a experiência mobile-first do frontend
-- adicionar ações rápidas para registrar tomadas
 - evoluir filtros de prescrições e tomadas
-- preparar suporte PWA além da base Angular
+- preparar suporte PWA com service worker e experiência offline
+- refinar experiência mobile-first do frontend
 
 ## Qualidade atual
 

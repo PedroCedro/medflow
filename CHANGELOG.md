@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.2.0] - 2026-05-17
+
+### Adicionado
+
+- endpoint `POST /api/intakes/bulk-update` para registrar múltiplas tomadas em uma única transação atômica
+- DTO `BulkIntakeUpdateItem` com validação no corpo da requisição
+- teste de integração cobrindo o fluxo de bulk-update
+
+### Alterado
+
+- dashboard redesenhado com seletor de paciente por chips, lista de medicamentos pendentes com checkbox e modal de confirmação exibindo medicamentos selecionados e horário da tomada
+- horário registrado capturado no momento de abertura do modal, não no carregamento da tela
+
+### Observações
+
+- `minor`: nova funcionalidade compatível com versões anteriores (novo endpoint e novo fluxo de dashboard)
+- build validado com `.\mvnw.cmd test` e `npm run build`
+
 ## Não versionado - 2026-05-08
 
 ### Adicionado
