@@ -1,5 +1,6 @@
 package br.com.infocedro.medflow.intake;
 
+import br.com.infocedro.medflow.intake.dto.BulkIntakeUpdateItem;
 import br.com.infocedro.medflow.intake.dto.IntakeRequest;
 import br.com.infocedro.medflow.intake.dto.IntakeResponse;
 import jakarta.validation.Valid;
@@ -37,6 +38,11 @@ public class IntakeController {
                 .toUri();
 
         return ResponseEntity.created(location).body(response);
+    }
+
+    @PostMapping("/bulk-update")
+    public List<IntakeResponse> bulkUpdate(@Valid @RequestBody List<@Valid BulkIntakeUpdateItem> items) {
+        return intakeService.bulkUpdate(items);
     }
 
     @GetMapping

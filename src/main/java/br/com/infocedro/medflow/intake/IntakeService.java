@@ -1,5 +1,6 @@
 package br.com.infocedro.medflow.intake;
 
+import br.com.infocedro.medflow.intake.dto.BulkIntakeUpdateItem;
 import br.com.infocedro.medflow.intake.dto.IntakeRequest;
 import br.com.infocedro.medflow.intake.dto.IntakeResponse;
 import br.com.infocedro.medflow.prescription.Prescription;
@@ -72,6 +73,15 @@ public class IntakeService {
         );
 
         return IntakeResponse.fromEntity(intake);
+    }
+
+    @Transactional
+    public List<IntakeResponse> bulkUpdate(List<BulkIntakeUpdateItem> items) {
+        return items.stream().map(item -> {
+            Intake intake = getActiveIntake(item.id());
+            intake.updateStatus(item.status(), item.takenAt());
+            return IntakeResponse.fromEntity(intake);
+        }).toList();
     }
 
     @Transactional

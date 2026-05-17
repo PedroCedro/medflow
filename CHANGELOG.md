@@ -4,6 +4,7 @@
 
 ### Adicionado
 
+- ações rápidas no dashboard para marcar tomadas pendentes como tomadas ou puladas
 - fluxo inicial do frontend Angular para prescrições
 - fluxo inicial do frontend Angular para tomadas
 - dashboard inicial com resumo do MVP e próximas tomadas

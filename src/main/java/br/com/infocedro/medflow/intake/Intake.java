@@ -102,6 +102,11 @@ public class Intake {
         this.notes = notes;
     }
 
+    public void updateStatus(IntakeStatus status, LocalDateTime takenAt) {
+        this.status = status;
+        this.takenAt = takenAt;
+    }
+
     public void deactivate() {
         this.active = false;
     }

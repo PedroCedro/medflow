@@ -8,6 +8,12 @@ export interface IntakeRequest {
   notes: string | null;
 }
 
+export interface BulkIntakeUpdateItem {
+  id: number;
+  status: IntakeStatus;
+  takenAt: string | null;
+}
+
 export interface Intake {
   id: number;
   prescriptionId: number;

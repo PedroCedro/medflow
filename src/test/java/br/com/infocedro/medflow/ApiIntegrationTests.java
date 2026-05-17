@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import br.com.infocedro.medflow.intake.IntakeStatus;
+import br.com.infocedro.medflow.intake.dto.BulkIntakeUpdateItem;
 import br.com.infocedro.medflow.intake.dto.IntakeRequest;
 import br.com.infocedro.medflow.medication.dto.MedicationRequest;
 import br.com.infocedro.medflow.patient.RelationshipType;
@@ -19,6 +20,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -108,6 +110,32 @@ class ApiIntegrationTests {
                 .andExpect(jsonPath("$.message").value("Medicamento nao encontrado"));
     }
 
+    @Test
+    void shouldBulkUpdateIntakeStatuses() throws Exception {
+        Long patientId = createPatient();
+        Long medicationId = createMedication();
+        Long prescriptionId = createPrescription(patientId, medicationId);
+        Long firstIntakeId = createPendingIntake(prescriptionId, LocalDateTime.of(2026, 5, 4, 8, 0));
+        Long secondIntakeId = createPendingIntake(prescriptionId, LocalDateTime.of(2026, 5, 4, 20, 0));
+        LocalDateTime takenAt = LocalDateTime.of(2026, 5, 4, 8, 10);
+
+        List<BulkIntakeUpdateItem> request = List.of(
+                new BulkIntakeUpdateItem(firstIntakeId, IntakeStatus.TAKEN, takenAt),
+                new BulkIntakeUpdateItem(secondIntakeId, IntakeStatus.SKIPPED, null)
+        );
+
+        mockMvc.perform(post("/api/intakes/bulk-update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsBytes(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(firstIntakeId))
+                .andExpect(jsonPath("$[0].status").value("TAKEN"))
+                .andExpect(jsonPath("$[0].takenAt").exists())
+                .andExpect(jsonPath("$[1].id").value(secondIntakeId))
+                .andExpect(jsonPath("$[1].status").value("SKIPPED"))
+                .andExpect(jsonPath("$[1].takenAt").doesNotExist());
+    }
+
     private Long createPatient() throws Exception {
         PatientRequest request = new PatientRequest(
                 "Maria Silva",
@@ -155,6 +183,18 @@ class ApiIntegrationTests {
                 LocalDateTime.of(2026, 5, 4, 8, 5),
                 IntakeStatus.TAKEN,
                 "Tomada registrada manualmente"
+        );
+
+        return createResourceAndExtractId("/api/intakes", request, "/api/intakes/");
+    }
+
+    private Long createPendingIntake(Long prescriptionId, LocalDateTime scheduledAt) throws Exception {
+        IntakeRequest request = new IntakeRequest(
+                prescriptionId,
+                scheduledAt,
+                null,
+                IntakeStatus.PENDING,
+                null
         );
 
         return createResourceAndExtractId("/api/intakes", request, "/api/intakes/");

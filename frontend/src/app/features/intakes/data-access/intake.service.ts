@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
-import { Intake, IntakeRequest } from '../models/intake.model';
+import { BulkIntakeUpdateItem, Intake, IntakeRequest } from '../models/intake.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +27,9 @@ export class IntakeService {
 
   update(id: number, payload: IntakeRequest): Observable<Intake> {
     return this.http.put<Intake>(`${this.apiUrl}/${id}`, payload);
+  }
+
+  bulkUpdate(items: BulkIntakeUpdateItem[]): Observable<Intake[]> {
+    return this.http.post<Intake[]>(`${this.apiUrl}/bulk-update`, items);
   }
 }
